@@ -1,10 +1,25 @@
 export interface SanityImage {
-  _type: 'image';
+  _type: "image";
+  _key?: string; // ← this line is missing in your local file
   asset: {
     _ref: string;
-    _type: 'reference';
+    _type: "reference";
   };
   alt?: string;
+  crop?: {
+    _type: string;
+    bottom: number;
+    left: number;
+    right: number;
+    top: number;
+  };
+  hotspot?: {
+    _type: string;
+    height: number;
+    width: number;
+    x: number;
+    y: number;
+  };
 }
 
 export interface Category {
