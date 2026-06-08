@@ -1,0 +1,537 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap");
+@import "tailwindcss";
+
+:root {
+  --sand: #f5ecd7;
+  --sand-light: #faf5ec;
+  --sand-dark: #e8d9bc;
+  --bark: #5c3d1e;
+  --bark-light: #8b6340;
+  --moss: #4a5240;
+  --clay: #c17f4a;
+  --clay-light: #d4a574;
+  --cream: #fdfaf4;
+  --ink: #1c1208;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+/* Grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sand-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bark-light);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: var(--clay-light);
+  color: var(--cream);
+}
+
+/* Utility classes */
+.font-display {
+  font-family: "Cormorant Garamond", serif;
+}
+.font-body {
+  font-family: "Jost", sans-serif;
+}
+
+.text-sand {
+  color: var(--sand);
+}
+.text-bark {
+  color: var(--bark);
+}
+.text-clay {
+  color: var(--clay);
+}
+.text-moss {
+  color: var(--moss);
+}
+.text-cream {
+  color: var(--cream);
+}
+.text-ink {
+  color: var(--ink);
+}
+.text-bark-light {
+  color: var(--bark-light);
+}
+
+.bg-sand {
+  background-color: var(--sand);
+}
+.bg-sand-light {
+  background-color: var(--sand-light);
+}
+.bg-sand-dark {
+  background-color: var(--sand-dark);
+}
+.bg-bark {
+  background-color: var(--bark);
+}
+.bg-clay {
+  background-color: var(--clay);
+}
+.bg-cream {
+  background-color: var(--cream);
+}
+.bg-moss {
+  background-color: var(--moss);
+}
+.bg-ink {
+  background-color: var(--ink);
+}
+
+.border-sand {
+  border-color: var(--sand-dark);
+}
+.border-bark {
+  border-color: var(--bark);
+}
+.border-clay {
+  border-color: var(--clay);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideRight {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+.animate-slide-right {
+  animation: slideRight 0.6s ease forwards;
+  transform-origin: left;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+/* Button base */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bark);
+  color: var(--cream);
+  font-family: "Jost", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--bark-light);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--bark);
+  font-family: "Jost", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 13px 32px;
+  border: 1px solid var(--bark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  background: var(--bark);
+  color: var(--cream);
+}
+
+/* Divider */
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--clay);
+}
+
+/* Card hover */
+.product-card {
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(92, 61, 30, 0.12);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE — max-width: 768px
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Navbar — hide desktop links, show hamburger */
+  .nav-desktop-links {
+    display: none !important;
+  }
+  .nav-hamburger {
+    display: flex !important;
+  }
+  .nav-mobile-menu {
+    display: flex !important;
+  }
+
+  /* Hero — stack vertically, hide decorative panel */
+  .hero-section {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+  .hero-visual-panel {
+    display: none !important;
+  }
+  .hero-content {
+    padding: 120px 24px 64px !important;
+  }
+  .hero-cta-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .hero-stats {
+    gap: 24px !important;
+    margin-top: 48px !important;
+  }
+
+  /* Featured products — single column */
+  .featured-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+  }
+  .products-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Brand story — stack vertically */
+  .brand-story-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  /* Products page */
+  .products-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Product detail — stack vertically */
+  .product-detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  /* Contact page — stack vertically */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+  .contact-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer — stack vertically */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+  }
+
+  /* General padding reduction */
+  .section-padding {
+    padding: 64px 20px !important;
+  }
+  .section-padding-sm {
+    padding: 48px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 100px 20px 48px !important;
+  }
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   HERO ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes pulseRing {
+  0%,
+  100% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.22;
+  }
+}
+
+@keyframes materialFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes counterUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 48px;
+  }
+}
+
+.hero-stat-item {
+  animation: counterUp 0.7s ease forwards;
+  opacity: 0;
+}
+.hero-stat-item:nth-child(1) {
+  animation-delay: 0.8s;
+}
+.hero-stat-item:nth-child(2) {
+  animation-delay: 1s;
+}
+.hero-stat-item:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+.hero-divider-line {
+  height: 1px;
+  background: var(--clay);
+  animation: lineGrow 0.8s ease 0.5s forwards;
+  width: 0;
+}
+
+.ring-1 {
+  animation:
+    pulseRing 4s ease-in-out 1s infinite,
+    spinSlow 40s linear infinite;
+}
+.ring-2 {
+  animation:
+    pulseRing 4s ease-in-out 2s infinite,
+    spinReverse 30s linear infinite;
+}
+.ring-3 {
+  animation:
+    pulseRing 4s ease-in-out 3s infinite,
+    spinSlow 20s linear infinite;
+}
+
+.ornament-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.material-tag:nth-child(1) {
+  animation: materialFloat 5s ease-in-out 0s infinite;
+}
+.material-tag:nth-child(2) {
+  animation: materialFloat 5s ease-in-out 0.8s infinite;
+}
+.material-tag:nth-child(3) {
+  animation: materialFloat 5s ease-in-out 1.6s infinite;
+}
+.material-tag:nth-child(4) {
+  animation: materialFloat 5s ease-in-out 2.4s infinite;
+}
+
+.hero-title-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+.hero-title-word:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.hero-title-word:nth-child(2) {
+  animation-delay: 0.25s;
+}
+.hero-title-word:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.hero-badge {
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.05s forwards;
+}
+.hero-body-text {
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.55s forwards;
+}
+.hero-cta-buttons {
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.7s forwards;
+}
+
+.btn-primary-shimmer {
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    90deg,
+    var(--bark) 0%,
+    var(--bark-light) 50%,
+    var(--bark) 100%
+  );
+  transition:
+    background-position 0.5s ease,
+    transform 0.2s ease;
+}
+.btn-primary-shimmer:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+}
