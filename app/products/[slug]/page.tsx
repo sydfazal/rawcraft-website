@@ -2,7 +2,7 @@ import { getProductBySlug, getAllProductSlugs } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import ImageCarousel from "../../../components/ui/ImageCarousel";
+import ImageCarousel from "./ImageCarousel";
 
 export const revalidate = 60;
 
